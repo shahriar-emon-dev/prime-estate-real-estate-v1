@@ -6,7 +6,7 @@
  */
 
 import { supabase } from './supabaseClient';
-import { Property, PropertyFilters, MeetingRequest, SiteVisitRequest } from './types';
+import { Property, PropertyFilters, MeetingRequest, SiteVisitRequest, MeetingSlot, Booking } from './types';
 
 // --- Properties ---
 
@@ -550,3 +550,176 @@ export async function deleteProject(id: string) {
   if (error) throw error;
   return true;
 }
+
+// =====================================================
+// Calendar & Booking Functions
+// =====================================================
+
+export async function getMeetingSlots(from?: string, to?: string): Promise<{ data: MeetingSlot[] }> {
+  let query = supabase
+    .from('meeting_slots')
+    .select('*')
+    .order('start_time', { ascending: true });
+
+  if (from) query = query.gte('start_time', from);
+  if (to) query = query.lte('start_time', to);
+
+  const { data, error } = await query;
+  if (error) throw error;
+  return { data: data || [] };
+}
+
+export async function createMeetingSlot(slot: Partial<MeetingSlot>): Promise<{ data: MeetingSlot }> {
+  const { data, error } = await supabase
+    .from('meeting_slots')
+    .insert({
+      start_time: slot.start_time,
+      end_time: slot.end_time,
+      is_blocked: slot.is_blocked ?? false,
+      title: slot.title || null,
+      notes: slot.notes || null,
+    })
+    .select()
+    .single();
+
+  if (error) throw error;
+  return { data };
+}
+
+export async function updateMeetingSlot(id: string, updates: Partial<MeetingSlot>): Promise<{ data: MeetingSlot }> {
+  const { data, error } = await supabase
+    .from('meeting_slots')
+    .update(updates)
+    .eq('id', id)
+    .select()
+    .single();
+
+  if (error) throw error;
+  return { data };
+}
+
+export async function deleteMeetingSlot(id: string): Promise<boolean> {
+  const { error } = await supabase.from('meeting_slots').delete().eq('id', id);
+  if (error) throw error;
+  return true;
+}
+
+export async function getBookings(status?: string): Promise<{ data: Booking[] }> {
+  let query = supabase
+    .from('bookings')
+    .select('*, meeting_slots(*)')
+    .order('created_at', { ascending: false });
+
+  if (status) query = query.eq('status', status);
+
+  const { data, error } = await query;
+  if (error) throw error;
+  return { data: data || [] };
+}
+
+export async function updateBookingStatus(
+  id: string,
+  action: 'confirm' | 'cancel' | 'complete',
+  adminNotes?: string
+): Promise<{ data: Booking }> {
+  const statusMap: Record<string, string> = {
+    confirm: 'confirmed',
+    cancel: 'cancelled',
+    complete: 'completed',
+  };
+
+  const updateData: Record<string, unknown> = { status: statusMap[action] };
+  if (adminNotes !== undefined) updateData.admin_notes = adminNotes;
+
+  const { data, error } = await supabase
+    .from('bookings')
+    .update(updateData)
+    .eq('id', id)
+    .select()
+    .single();
+
+  if (error) throw error;
+  return { data };
+}
+
+export async function getAvailableSlots(date?: string, from?: string, to?: string): Promise<{ data: MeetingSlot[] }> {
+  let query = supabase
+    .from('meeting_slots')
+    .select('id, start_time, end_time, title')
+    .eq('is_blocked', false)
+    .order('start_time', { ascending: true });
+
+  if (date) {
+    const dayStart = `${date}T00:00:00.000Z`;
+    const dayEnd = `${date}T23:59:59.999Z`;
+    query = query.gte('start_time', dayStart).lte('start_time', dayEnd);
+  } else if (from && to) {
+    query = query.gte('start_time', from).lte('start_time', to);
+  } else {
+    const now = new Date().toISOString();
+    const future = new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString();
+    query = query.gte('start_time', now).lte('start_time', future);
+  }
+
+  const { data: slots, error } = await query;
+  if (error) throw error;
+
+  // Filter out booked slots
+  const slotIds = (slots || []).map((s) => s.id);
+  let bookedSlotIds: string[] = [];
+
+  if (slotIds.length > 0) {
+    const { data: bookings } = await supabase
+      .from('bookings')
+      .select('slot_id')
+      .in('slot_id', slotIds)
+      .in('status', ['pending', 'confirmed']);
+
+    bookedSlotIds = (bookings || []).map((b) => b.slot_id).filter(Boolean) as string[];
+  }
+
+  const available = (slots || []).filter((s) => !bookedSlotIds.includes(s.id));
+  return { data: available as MeetingSlot[] };
+}
+
+export async function createBooking(booking: {
+  slot_id: string;
+  guest_name: string;
+  guest_email: string;
+  guest_phone?: string;
+  message?: string;
+  duration?: number;
+}): Promise<{ data: Booking }> {
+  // Fetch slot times
+  const { data: slot, error: slotErr } = await supabase
+    .from('meeting_slots')
+    .select('start_time, end_time')
+    .eq('id', booking.slot_id)
+    .single();
+
+  if (slotErr || !slot) throw new Error('Slot not found');
+
+  const dur = booking.duration || 30;
+  const start = new Date(slot.start_time);
+  const end = new Date(start.getTime() + dur * 60 * 1000);
+
+  const { data, error } = await supabase
+    .from('bookings')
+    .insert({
+      slot_id: booking.slot_id,
+      guest_name: booking.guest_name,
+      guest_email: booking.guest_email,
+      guest_phone: booking.guest_phone || null,
+      start_time: slot.start_time,
+      end_time: end.toISOString(),
+      duration: dur,
+      message: booking.message || null,
+      status: 'pending',
+    })
+    .select()
+    .single();
+
+  if (error) throw error;
+  return { data };
+}
+

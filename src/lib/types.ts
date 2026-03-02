@@ -159,3 +159,33 @@ export interface Notification {
   isRead: boolean;
   createdAt: string;
 }
+
+// Calendar & Booking Types
+export interface MeetingSlot {
+  id: string;
+  start_time: string;
+  end_time: string;
+  is_blocked: boolean;
+  title?: string;
+  notes?: string;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface Booking {
+  id: string;
+  slot_id: string | null;
+  guest_name: string;
+  guest_email: string;
+  guest_phone?: string;
+  start_time: string;
+  end_time: string;
+  duration: number;
+  message?: string;
+  status: 'pending' | 'confirmed' | 'cancelled' | 'completed';
+  admin_notes?: string;
+  created_at: string;
+  updated_at: string;
+  meeting_slots?: MeetingSlot;
+}
+

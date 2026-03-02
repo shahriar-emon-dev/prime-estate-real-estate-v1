@@ -146,7 +146,7 @@ function PropertiesContent() {
                   </svg>
                 </div>
                 <p className="text-xl text-gray-600 mb-2 font-semibold">No properties found</p>
-                <p className="text-gray-500">Try adjusting your filters to see more results</p>
+                <p className="text-gray-600">Try adjusting your filters to see more results</p>
               </div>
             )}
 

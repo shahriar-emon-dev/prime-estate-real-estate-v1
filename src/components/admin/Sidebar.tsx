@@ -83,6 +83,16 @@ export default function Sidebar({ onClose }: SidebarProps) {
       ],
     },
     {
+      label: 'Calendar',
+      href: '/admin/calendar',
+      icon: '📅',
+    },
+    {
+      label: 'Bookings',
+      href: '/admin/bookings',
+      icon: '📋',
+    },
+    {
       label: 'User Logs',
       href: '/admin/user-logs',
       icon: '📜',
@@ -99,7 +109,7 @@ export default function Sidebar({ onClose }: SidebarProps) {
           </div>
           <div>
             <span className="font-bold text-white">Admin Panel</span>
-            <p className="text-xs text-gray-400">Prime Estate</p>
+            <p className="text-xs text-gray-300">Prime Estate</p>
           </div>
         </div>
         <button 
@@ -172,7 +182,7 @@ export default function Sidebar({ onClose }: SidebarProps) {
                           block px-4 py-2.5 rounded-lg transition-all duration-200 text-sm
                           ${isActive(subitem.href)
                             ? 'bg-blue-600 text-white shadow-md'
-                            : 'text-gray-400 hover:bg-gray-800 hover:text-white'
+                            : 'text-gray-300 hover:bg-gray-800 hover:text-white'
                           }
                         `}
                       >

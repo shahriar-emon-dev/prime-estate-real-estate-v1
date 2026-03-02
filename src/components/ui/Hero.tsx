@@ -33,7 +33,7 @@ const Hero = () => {
             Find Your Dream Home in Bangladesh
           </h1>
 
-          <p className="mt-6 text-xl text-gray-300 max-w-3xl">
+          <p className="mt-6 text-xl text-gray-200 max-w-3xl">
             Discover the perfect property across major cities in Bangladesh.
             Browse through thousands of listings and find your ideal home.
           </p>
@@ -71,22 +71,22 @@ const Hero = () => {
           <div className="mt-12 grid grid-cols-2 sm:grid-cols-4 gap-4">
             <div className="text-center">
               <div className="text-3xl font-bold text-white">5000+</div>
-              <div className="text-gray-300">Properties</div>
+              <div className="text-gray-200">Properties</div>
             </div>
 
             <div className="text-center">
               <div className="text-3xl font-bold text-white">1000+</div>
-              <div className="text-gray-300">Happy Clients</div>
+              <div className="text-gray-200">Happy Clients</div>
             </div>
 
             <div className="text-center">
               <div className="text-3xl font-bold text-white">15+</div>
-              <div className="text-gray-300">Cities</div>
+              <div className="text-gray-200">Cities</div>
             </div>
 
             <div className="text-center">
               <div className="text-3xl font-bold text-white">10+</div>
-              <div className="text-gray-300">Years Experience</div>
+              <div className="text-gray-200">Years Experience</div>
             </div>
           </div>
         </div>

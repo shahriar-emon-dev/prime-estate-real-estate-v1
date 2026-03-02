@@ -32,7 +32,7 @@ const FeaturedProperties = () => {
           <h2 className="text-3xl font-extrabold text-gray-900 sm:text-4xl">
             Featured Properties in Bangladesh
           </h2>
-          <p className="mt-4 text-lg text-gray-500">
+          <p className="mt-4 text-lg text-gray-600">
             Explore our handpicked selection of premium properties across major cities
           </p>
         </div>
@@ -54,8 +54,8 @@ const FeaturedProperties = () => {
               </div>
               <div className="p-6">
                 <h3 className="text-xl font-semibold text-gray-900 line-clamp-1">{property.title}</h3>
-                <p className="mt-2 text-gray-500">{property.city}</p>
-                <div className="mt-4 grid grid-cols-3 gap-4 text-sm text-gray-500 border-t pt-4">
+                <p className="mt-2 text-gray-600">{property.city}</p>
+                <div className="mt-4 grid grid-cols-3 gap-4 text-sm text-gray-600 border-t pt-4">
                   <div className="flex items-center gap-1">
                     <FaBed className="text-blue-500" />
                     <span className="font-medium">{property.bedrooms}</span>

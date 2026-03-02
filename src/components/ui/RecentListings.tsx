@@ -53,7 +53,7 @@ const RecentListings = () => {
             <h2 className="text-3xl font-extrabold text-gray-900 sm:text-4xl">
               Recent Listings
             </h2>
-            <p className="mt-4 text-lg text-gray-500">Loading latest properties...</p>
+            <p className="mt-4 text-lg text-gray-600">Loading latest properties...</p>
           </div>
           <div className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
             {[1, 2, 3].map((i) => (
@@ -73,7 +73,7 @@ const RecentListings = () => {
             <h2 className="text-3xl font-extrabold text-gray-900 sm:text-4xl">
               Recent Listings
             </h2>
-            <p className="mt-4 text-lg text-gray-500">
+            <p className="mt-4 text-lg text-gray-600">
               No properties available at the moment. Check back soon!
             </p>
             <div className="mt-8">
@@ -128,14 +128,14 @@ const RecentListings = () => {
                 <h3 className="text-xl font-semibold text-gray-900 line-clamp-1 group-hover:text-blue-600 transition-colors">
                   {property.title}
                 </h3>
-                <div className="mt-2 flex items-center gap-1 text-gray-500">
+                <div className="mt-2 flex items-center gap-1 text-gray-600">
                   <FaMapMarkerAlt className="text-blue-500 text-sm" />
                   <span>{property.area}, {property.city}</span>
                 </div>
                 <div className="mt-4 flex justify-between items-center">
                   <span className="text-xl font-bold text-blue-600">{property.price}</span>
                 </div>
-                <div className="mt-4 grid grid-cols-3 gap-2 text-sm text-gray-500 border-t pt-4">
+                <div className="mt-4 grid grid-cols-3 gap-2 text-sm text-gray-600 border-t pt-4">
                   <div className="flex items-center gap-1">
                     <FaBed className="text-blue-500" />
                     <span>{property.bedrooms} Beds</span>

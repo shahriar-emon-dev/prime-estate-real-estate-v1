@@ -152,10 +152,10 @@ export default function FavoritesPage() {
         {!loading && favorites.length === 0 && (
           <div className="text-center py-20 bg-white rounded-2xl shadow-sm border border-gray-200">
             <div className="mb-6">
-              <FaRegHeart className="mx-auto h-20 w-20 text-gray-300" />
+              <FaRegHeart className="mx-auto h-20 w-20 text-gray-400" />
             </div>
             <h2 className="text-2xl font-bold text-gray-900 mb-2">No favorites yet</h2>
-            <p className="text-gray-500 mb-6 max-w-md mx-auto">
+            <p className="text-gray-600 mb-6 max-w-md mx-auto">
               Start exploring properties and click the heart icon to save them here.
             </p>
             <Button onClick={() => router.push('/properties')}>

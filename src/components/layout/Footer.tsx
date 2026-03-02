@@ -8,7 +8,7 @@ export default function Footer() {
           {/* Company Info */}
           <div className="space-y-4">
             <h3 className="text-xl font-bold">primeestate</h3>
-            <p className="text-gray-400">
+            <p className="text-gray-300">
               Your trusted partner in finding the perfect property in Bangladesh.
             </p>
             <div className="flex space-x-4">
@@ -16,7 +16,7 @@ export default function Footer() {
                 href="https://facebook.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-gray-400 hover:text-white"
+                className="text-gray-300 hover:text-white"
               >
                 <span className="sr-only">Facebook</span>
                 <svg
@@ -36,7 +36,7 @@ export default function Footer() {
                 href="https://twitter.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-gray-400 hover:text-white"
+                className="text-gray-300 hover:text-white"
               >
                 <span className="sr-only">Twitter</span>
                 <svg
@@ -52,7 +52,7 @@ export default function Footer() {
                 href="https://linkedin.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-gray-400 hover:text-white"
+                className="text-gray-300 hover:text-white"
               >
                 <span className="sr-only">LinkedIn</span>
                 <svg
@@ -76,22 +76,22 @@ export default function Footer() {
             <h3 className="text-lg font-semibold mb-4">Quick Links</h3>
             <ul className="space-y-2">
               <li>
-                <Link href="/properties" className="text-gray-400 hover:text-white">
+                <Link href="/properties" className="text-gray-300 hover:text-white">
                   Properties
                 </Link>
               </li>
               <li>
-                <Link href="/about" className="text-gray-400 hover:text-white">
+                <Link href="/about" className="text-gray-300 hover:text-white">
                   About Us
                 </Link>
               </li>
               <li>
-                <Link href="/contact" className="text-gray-400 hover:text-white">
+                <Link href="/contact" className="text-gray-300 hover:text-white">
                   Contact
                 </Link>
               </li>
               <li>
-                <Link href="/register" className="text-gray-400 hover:text-white">
+                <Link href="/register" className="text-gray-300 hover:text-white">
                   Register as Seller
                 </Link>
               </li>
@@ -101,7 +101,7 @@ export default function Footer() {
           {/* Contact Info */}
           <div>
             <h3 className="text-lg font-semibold mb-4">Contact Info</h3>
-            <ul className="space-y-2 text-gray-400">
+            <ul className="space-y-2 text-gray-300">
               <li>123 Real Estate Street</li>
               <li>Dhaka, Bangladesh</li>
               <li>Phone: +880 1234-567890</li>
@@ -112,14 +112,14 @@ export default function Footer() {
           {/* Newsletter */}
           <div>
             <h3 className="text-lg font-semibold mb-4">Newsletter</h3>
-            <p className="text-gray-400 mb-4">
+            <p className="text-gray-300 mb-4">
               Subscribe to our newsletter for the latest property updates.
             </p>
             <form className="flex flex-col space-y-2">
               <input
                 type="email"
                 placeholder="Enter your email"
-                className="px-4 py-2 rounded-md bg-gray-800 text-white border border-gray-700 focus:outline-none focus:border-blue-500"
+                className="px-4 py-2 rounded-md bg-gray-800 text-white border border-gray-700 focus:outline-none focus:border-blue-500 placeholder-gray-400"
               />
               <button
                 type="submit"
@@ -131,7 +131,7 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-8 pt-8 border-t border-gray-800 text-center text-gray-400">
+        <div className="mt-8 pt-8 border-t border-gray-800 text-center text-gray-300">
           <p>&copy; {new Date().getFullYear()} primeestate. All rights reserved.</p>
         </div>
       </div>

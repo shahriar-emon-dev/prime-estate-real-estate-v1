@@ -199,7 +199,7 @@ export default function PropertyDetailsSection({
       {/* Agent Contact Card - Modern */}
       <div className="bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white rounded-2xl p-6 space-y-5 shadow-xl">
         <div>
-          <p className="text-gray-300 text-sm font-medium mb-1">Listing Agent</p>
+          <p className="text-gray-200 text-sm font-medium mb-1">Listing Agent</p>
           <h3 className="text-2xl font-bold">{agentName || 'Prime Estate Team'}</h3>
         </div>
 
@@ -213,11 +213,11 @@ export default function PropertyDetailsSection({
                 <FaPhone className="text-white" />
               </div>
               <div>
-                <p className="text-gray-300 text-xs font-medium">Phone</p>
+                <p className="text-gray-200 text-xs font-medium">Phone</p>
                 <p className="font-semibold">{agentPhone || 'N/A'}</p>
               </div>
             </div>
-            <FaArrowRight className="text-gray-400 group-hover:text-white group-hover:translate-x-1 transition-all" />
+            <FaArrowRight className="text-gray-300 group-hover:text-white group-hover:translate-x-1 transition-all" />
           </a>
 
           <a 
@@ -229,11 +229,11 @@ export default function PropertyDetailsSection({
                 <FaEnvelope className="text-white" />
               </div>
               <div>
-                <p className="text-gray-300 text-xs font-medium">Email</p>
+                <p className="text-gray-200 text-xs font-medium">Email</p>
                 <p className="font-semibold text-sm">{agentEmail || 'support@primeestate.com'}</p>
               </div>
             </div>
-            <FaArrowRight className="text-gray-400 group-hover:text-white group-hover:translate-x-1 transition-all" />
+            <FaArrowRight className="text-gray-300 group-hover:text-white group-hover:translate-x-1 transition-all" />
           </a>
         </div>
       </div>
