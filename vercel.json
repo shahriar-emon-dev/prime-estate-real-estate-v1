@@ -1,10 +1,5 @@
 {
   "version": 2,
-  "functions": {
-    "src/app/api/admin/bookings/route.ts": { "runtime": "edge" },
-    "src/app/api/meeting-slots/route.ts": { "runtime": "edge" },
-    "src/app/api/bookings/slots/route.ts": { "runtime": "edge" }
-  },
   "headers": [
     {
       "source": "/api/calendar/(.*)",
